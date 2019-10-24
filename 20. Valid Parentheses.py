@@ -42,3 +42,4 @@ class Solution:
                 return False
         if l==[0]:
             return True
+            
