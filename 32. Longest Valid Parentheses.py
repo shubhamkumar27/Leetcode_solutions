@@ -13,6 +13,7 @@ Output: 4
 Explanation: The longest valid parentheses substring is "()()"
 '''
 
+########## METHOD 1 ##################
 class Solution:
     def longestValidParentheses(self, s):
         if (len(s)==0 or s==None):
