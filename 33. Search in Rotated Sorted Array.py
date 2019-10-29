@@ -22,9 +22,7 @@ class Solution:
         start = 0
         end = l-1
         while(start<end):
-            # print(start,end)
             mid = start + (end-start)//2
-            #print(start,end,mid)
             if nums[mid]>nums[end]:
                 start = mid+1
             else:
@@ -32,14 +30,12 @@ class Solution:
         pivot = start
         start = 0
         end = l-1
-        #print('hey',start,end,pivot)
         if nums[end]>= target >=nums[pivot]:
             start = pivot
         else:
             end = pivot-1    
         while(start<=end):
             mid = start + (end-start)//2
-            #print(start,end,mid)
             if nums[mid]==target: return mid
             elif nums[mid]<target:
                 start = mid+1
