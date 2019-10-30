@@ -47,3 +47,18 @@ Only the filled cells need to be validated according to the mentioned rules.
 The given board contain only digits 1-9 and the character '.'.
 The given board size is always 9x9.
 '''
+
+class Solution:
+    def isValidSudoku(self, board):
+        rowtest = [[0 for i in range(9)] for i in range(9)]
+        coltest = [[0 for i in range(9)] for i in range(9)]
+        boxtest = [[0 for i in range(9)] for i in range(9)]
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] != '.':
+                    num = int(board[i][j])-1
+                    k = (i//3)*3 + j//3
+                    if (rowtest[i][num]) or (coltest[j][num]) or (boxtest[k][num]):
+                        return False
+                    rowtest[i][num] = coltest[j][num] = boxtest[k][num] = 1
+        return True
