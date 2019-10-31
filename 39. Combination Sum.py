@@ -25,3 +25,21 @@ A solution set is:
 ]
 '''
 
+class Solution:
+    def combinationSum(self, candidates, target):
+        if len(candidates)==0:
+            return []
+        res = []
+        candidates.sort()
+        self.recursive(candidates,target,0,res,[])
+        return res
+        
+    def recursive(self, nums, target, index, res, path):
+        if target==0:
+            res.append(path)
+            return
+        for i in range(index, len(nums)):
+            # print(i,res,target)
+            if nums[i]>target:
+                break
+            self.recursive(nums,target-nums[i],i,res,path+[nums[i]])
