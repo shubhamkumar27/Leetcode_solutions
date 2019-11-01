@@ -26,3 +26,23 @@ A solution set is:
 ]
 '''
 
+class Solution:
+    def combinationSum2(self, candidates, target):
+        if len(candidates)==0:
+            return []
+        candidates.sort()
+        print(candidates)
+        result = []
+        self.recursive(candidates,target,0,[],result)
+        return result
+    
+    def recursive(self, nums, target, index, path, result):
+        if target == 0:
+            result.append(path)
+            return
+        for i in range(index,len(nums)):
+            if i>index and nums[i]==nums[i-1]:
+                continue
+            if nums[i]>target:
+                return
+            self.recursive(nums,target-nums[i],i+1,path+[nums[i]],result)
