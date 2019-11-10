@@ -18,7 +18,7 @@ Your algorithm should run in O(n) time and uses constant extra space.
 '''
 
 class Solution:
-    def firstMissingPositive(self, nums: List[int]) -> int:
+    def firstMissingPositive(self, nums):
         n = len(nums)
         for i in range(n):
             digit = nums[i]
