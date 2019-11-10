@@ -16,3 +16,16 @@ Output: 1
 Note:
 Your algorithm should run in O(n) time and uses constant extra space.
 '''
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+        for i in range(n):
+            digit = nums[i]
+            while(digit>0 and digit<=n and nums[digit-1] != digit):
+                nums[i],nums[digit-1]=nums[digit-1],nums[i]
+                digit = nums[i]
+        for i in range(n):
+            if nums[i]!=i+1:
+                return i+1
+        return n+1
