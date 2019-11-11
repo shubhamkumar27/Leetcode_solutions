@@ -31,5 +31,5 @@ class Solution:
             else:
                 maxbh = height[b-1]
                 b -= 1
-            print(water,f,b)
+            #print(water,f,b)
         print(water)
