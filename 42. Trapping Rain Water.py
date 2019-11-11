@@ -9,27 +9,25 @@ Example:
 Input: [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
 '''
+
 class Solution:
     def trap(self, height):
-        water = 0
-        maxfh = height[0]
-        maxbh = height[-1]
-        f = 0
-        b = len(height)-1
-        while(f<b):
-            if height[f+1]<maxfh:
-                d = maxfh-height[f+1]
-                water += d
-                f += 1
+        water = 0   
+        front_wall = 0
+        back_wall = 0
+        front = 0
+        back = len(height)-1
+        while(front<back):
+            if height[front]<height[back]:
+                if height[front] >= front_wall:
+                    front_wall = height[front]
+                else:
+                    water += front_wall - height[front]
+                front += 1
             else:
-                maxfh = height[f+1]
-                f += 1
-            if height[b-1]<maxbh:
-                d = maxbh-height[b-1]
-                water += d
-                b -= 1
-            else:
-                maxbh = height[b-1]
-                b -= 1
-            #print(water,f,b)
-        print(water)
+                if height[back] >= back_wall:
+                    back_wall = height[back]
+                else:
+                    water += back_wall - height[back]
+                back -= 1
+        return water
