@@ -15,3 +15,18 @@ Note:
 You can assume that you can always reach the last index.
 '''
 
+class Solution:
+    def jump(self, nums):
+        if len(nums)==1:
+            return 0
+        jumps = 0
+        curend = 0
+        curmax = 0
+        for i in range(len(nums)):
+            curmax = max(curmax, i+nums[i])
+            if i==curend:
+                jumps+=1
+                curend = curmax
+                if curend >= len(nums)-1:
+                    break
+        return jumps
