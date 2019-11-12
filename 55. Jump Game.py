@@ -15,3 +15,19 @@ Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum
              jump length is 0, which makes it impossible to reach the last index.
 '''
+
+class Solution:
+    def canJump(self, nums):
+        if len(nums)==1:
+            return True
+        if nums[0]==0:
+            return False
+        curend, curmax = 0,0
+        for i in range(len(nums)):
+            if i>curend:
+                return False
+            curmax = max(curmax, i+nums[i])
+            if i==curend:
+                curend = curmax
+                if curend>=len(nums)-1:
+                    return True
