@@ -28,7 +28,7 @@ class Solution:
             
         for i in range(start,len(nums)):
             nums[start],nums[i]=nums[i],nums[start]
-            result = self.recursive(nums, start+1, result)
+            self.recursive(nums, start+1, result)
             nums[start],nums[i]=nums[i],nums[start]
         
         return result
