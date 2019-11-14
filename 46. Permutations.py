@@ -14,6 +14,7 @@ Output:
 ]
 '''
 
+
 class Solution:
     def permute(self, nums):
         if len(nums)==0:
