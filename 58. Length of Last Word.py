@@ -10,3 +10,13 @@ Input: "Hello World"
 Output: 5
 '''
 
+class Solution:
+    def lengthOfLastWord(self, s):
+        l = s.split(' ')
+        print(l)
+        if len(l)==0:
+            return 0
+        for i in range(len(l)-1,-1,-1):
+            if len(l[i])>0:
+                return len(l[i])
+        return 0
