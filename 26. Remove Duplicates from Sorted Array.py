@@ -33,6 +33,7 @@ for (int i = 0; i < len; i++) {
 }
 '''
 
+
 class Solution:
     def removeDuplicates(self, nums):
         l = 1

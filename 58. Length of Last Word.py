@@ -20,3 +20,4 @@ class Solution:
             if len(l[i])>0:
                 return len(l[i])
         return 0
+
