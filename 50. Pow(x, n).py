@@ -38,7 +38,7 @@ class Solution:
             n = n//2
         return p
 
-        ########## RECURSIVE ##########
+        ########## RECURSIVE ###########
         if n==0:
             return 1
         if x==1:
