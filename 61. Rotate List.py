@@ -19,3 +19,34 @@ rotate 2 steps to the right: 1->2->0->NULL
 rotate 3 steps to the right: 0->1->2->NULL
 rotate 4 steps to the right: 2->0->1->NULL
 '''
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def rotateRight(self, head, k):
+        if head==None:
+            return head
+        temp1 = head
+        temp2 = head
+        temp = head
+        count=0
+        while(temp):
+            temp = temp.next
+            count+=1
+        k = k%count
+        for i in range(k):
+            temp2 = temp2.next
+            
+        if temp2==head:
+            return head
+        while(temp2.next!=None):
+            temp1 = temp1.next
+            temp2 = temp2.next
+        temp2.next = head
+        head = temp1.next
+        temp1.next = None
+        return head
