@@ -50,3 +50,22 @@ class Solution:
         head = temp1.next
         temp1.next = None
         return head
+
+############## BETTER EFFICIENCY ################
+class Solution2:
+    def rotateRight(self, head, k):
+        if head == None or head.next == None: return head
+        
+        # calculate length
+        l, p, prev = 0, head, None
+        while p:
+            l, p, prev = l+1, p.next, p
+        if k % l == 0: return head
+        step = l - k % l
+        
+        p = head
+        # insert None
+        for i in range(1, step):
+            p = p.next
+        p.next, prev.next, ret = None, head, p.next
+        return ret
