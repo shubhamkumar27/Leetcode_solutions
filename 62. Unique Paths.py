@@ -32,4 +32,15 @@ class Solution:
         return dp_grid[-1][-1]
 
     ## MATHS
+    def uniquePaths2(self, m, n):
+        m_fact = self.factorial(m-1)
+        n_fact = self.factorial(n-1)
+        mn_fact = self.factorial(m+n-2)
+        ans = mn_fact//(m_fact*n_fact)
+        return ans
     
+    def factorial(self,m):
+        fact = 1
+        for i in range(1,m+1):
+            fact *= i
+        return fact
