@@ -27,3 +27,34 @@ There are two ways to reach the bottom-right corner:
 2. Down -> Down -> Right -> Right
 '''
 
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid):
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+        dp_grid=[]
+        if obstacleGrid[0][0]==1:
+            return 0
+        j=0
+        while(j<m) and (not obstacleGrid[j][0]):
+            dp_grid.append([1]+[0]*(n-1))
+            j+=1
+            
+        for i in range(j,m):
+            dp_grid.append([0]*n)
+        
+        for i in range(n):
+            if not obstacleGrid[0][i]:
+                dp_grid[0][i]=1
+            else:
+                break
+        print(dp_grid)
+        for i in range(1,m):
+            for j in range(1,n):
+                if obstacleGrid[i][j]:
+                    dp_grid[i][j] = 0
+                else:
+                    dp_grid[i][j] = dp_grid[i-1][j]+dp_grid[i][j-1]
+        return dp_grid[-1][-1]
+                    
+                    
+        
