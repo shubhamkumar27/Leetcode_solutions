@@ -55,6 +55,3 @@ class Solution:
                 else:
                     dp_grid[i][j] = dp_grid[i-1][j]+dp_grid[i][j-1]
         return dp_grid[-1][-1]
-                    
-                    
-        
