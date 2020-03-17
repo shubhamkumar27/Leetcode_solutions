@@ -27,4 +27,4 @@ def helper(digits,phone):
     back = helper(digits[1:],phone)
     front = list(phone[digits[0]])
     res = [f+b for f in front  for b in back]
-    return
+    return res
