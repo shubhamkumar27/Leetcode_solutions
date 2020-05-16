@@ -12,3 +12,8 @@ Example 2:
 Input: a = "1010", b = "1011"
 Output: "10101"
 '''
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        a = int(a,2)
+        b = int(b,2)
+        return str(bin(a+b))[2:]
