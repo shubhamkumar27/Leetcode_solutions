@@ -15,3 +15,18 @@ Input: k = 3, n = 9
 Output: [[1,2,6], [1,3,5], [2,3,4]]
 '''
 
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        result = []
+        recursion(1, 0, k, n, result, [])
+        return result
+        
+        
+def recursion(index, total, k, n, result, current):
+    if len(current)==k:
+        if total==n:
+            result.append(current)
+        return
+    
+    for i in range(index, 10):
+        recursion(i+1, total+i, k, n, result, current+[i])
