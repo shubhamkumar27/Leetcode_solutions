@@ -19,3 +19,15 @@ Output:
 ]
 '''
 
+class Solution:
+    def subsets(self, nums):
+        answer = []
+        helper(nums, 0, [], answer)
+        return answer
+        
+        
+def helper(nums, index, cur, answer):
+    # print(cur)
+    answer.append(cur)
+    for i in range(index, len(nums)):
+        helper(nums, i+1, cur+[nums[i]], answer)
