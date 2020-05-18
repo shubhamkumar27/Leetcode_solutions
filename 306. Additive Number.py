@@ -31,3 +31,29 @@ Follow up:
 How would you handle overflow for very large input integers?
 '''
 
+import math
+answer = False
+class Solution:
+    def isAdditiveNumber(self, num: str) -> bool:
+        global answer
+        answer = False
+        recursive(num, 0, 0, [])
+        return answer
+        
+        
+def recursive(num, index, length, cur):
+    global answer
+    if len(cur)>=3 and cur[-1] != cur[-2]+cur[-3]:
+        return
+    
+    if len(num)==length and len(cur)>2:
+        answer = True
+        return
+    
+    for i in range(index, len(num)):
+        number = int(num[index:i+1])
+        if (number==0 and (i+1-index)==1) or (number>0 and int(math.log(number, 10))+1==(i+1-index)):
+            recursive(num, i+1, length+(i+1-index), cur+[number])
+        if answer:
+            return
+
