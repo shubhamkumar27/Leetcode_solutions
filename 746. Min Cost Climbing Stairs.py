@@ -16,3 +16,16 @@ cost will have a length in the range [2, 1000].
 Every cost[i] will be an integer in the range [0, 999].
 '''
 
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        if len(cost)==1: return 0
+        elif len(cost)==2: return min(cost)
+        
+        step1 = cost[0]
+        step2 = cost[1]
+        for i in range(2,len(cost)):
+            current = cost[i] + min(step1, step2)
+            step1 = step2
+            step2 = current
+        return min(step1, step2)
+            
