@@ -16,8 +16,6 @@ Output: 1->2->3
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-
-
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         if head==None or head.next==None:
