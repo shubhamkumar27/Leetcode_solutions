@@ -36,3 +36,18 @@ Input: "/a//b////c/d//././/.."
 Output: "/a/b/c"
 '''
 
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        stack = []
+        string = path.split('/')
+        for i in range(len(string)):
+            if string[i]!='':
+                if string[i]=='..':
+                    if len(stack)>0:
+                        stack.pop()
+                elif string[i]=='.':
+                    pass
+                else:
+                    stack.append(string[i])
+        
+        return '/'+'/'.join(stack)
