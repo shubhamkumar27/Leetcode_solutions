@@ -21,7 +21,7 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 #         self.left = left
 #         self.right = right
 
-
+#################### RECURSIVE ############################
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         inOrder = []
@@ -34,3 +34,19 @@ def inOrderTraversal(root, inOrder):
     inOrderTraversal(root.left, inOrder)
     inOrder.append(root.val)
     inOrderTraversal(root.right, inOrder)
+
+
+################### ITERATIVE ###########################
+class Solution2:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        stack = []
+        inOrder = []
+        while root or len(stack)!=0:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                node = stack.pop()
+                root = node.right
+                inOrder.append(node.val)
+        return inOrder
