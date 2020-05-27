@@ -34,3 +34,13 @@ Follow up:
 
 If this function is called many times, how would you optimize it?
 '''
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        count = 0
+        while(n):
+            n &= (n-1)
+            count+=1
+        return count
+        
+        
