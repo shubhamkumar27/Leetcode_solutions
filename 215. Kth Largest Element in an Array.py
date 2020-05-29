@@ -13,4 +13,13 @@ Note:
 You may assume k is always valid, 1 ≤ k ≤ array's length.
 '''
 
-
+import heapq
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        arr = []
+        heapq.heapify(arr)
+        for i in range(len(nums)):
+            heapq.heappush(arr, nums[i])
+            if len(arr)>k:
+                heapq.heappop(arr)
+        return heapq.heappop(arr)
