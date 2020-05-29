@@ -15,3 +15,23 @@ A rather straight forward solution is a two-pass algorithm using counting sort.
 First, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
 Could you come up with a one-pass algorithm using only constant space?
 '''
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        r = 0
+        w = 0
+        b = len(nums)-1
+        
+        while(w<=b):
+            if nums[w]==0:
+                nums[r],nums[w] = nums[w], nums[r]
+                r+=1
+                w+=1
+            elif nums[w]==2:
+                nums[w], nums[b] = nums[b], nums[w]
+                b-=1
+            else:
+                w+=1
