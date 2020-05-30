@@ -16,3 +16,18 @@ The given numbers in primes are in ascending order.
 0 < k ≤ 100, 0 < n ≤ 106, 0 < primes[i] < 1000.
 The nth super ugly number is guaranteed to fit in a 32-bit signed integer.
 '''
+
+import heapq
+class Solution:
+    def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
+        minHeap = []
+        x = 1
+        for i in range(1,n):
+            for p in primes:
+                heapq.heappush(minHeap, x*p)
+            
+            x = heapq.heappop(minHeap)
+            while(len(minHeap)>0 and x==minHeap[0]):
+                heapq.heappop(minHeap)
+                 
+        return x
