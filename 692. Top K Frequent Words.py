@@ -20,3 +20,19 @@ Follow up:
 Try to solve it in O(n log k) time and O(n) extra space.
 '''
 
+import heapq
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        hashmap = {}
+        for i in range(len(words)):
+            hashmap[words[i]] = hashmap.get(words[i],0)+1
+            
+        freqHeap = []
+        for word,freq in hashmap.items():
+            heapq.heappush(freqHeap, (-freq,word))
+        
+        answers = []
+        for i in range(k):
+            answers.append(heapq.heappop(freqHeap)[1])
+        return answers
+
