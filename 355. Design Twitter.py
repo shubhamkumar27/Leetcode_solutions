@@ -32,3 +32,54 @@ twitter.unfollow(1, 2);
 // since user 1 is no longer following user 2.
 twitter.getNewsFeed(1);
 '''
+
+class Twitter:
+
+    def __init__(self):
+        self.users = {}
+        self.tweets = []
+        
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        if userId not in self.users:
+            self.users[userId] = set()
+        self.tweets.append([tweetId, userId])
+        
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        feed = []
+        for i in range(len(self.tweets)-1, -1, -1):
+            if userId in self.users and (self.tweets[i][1] in self.users[userId] or self.tweets[i][1]==userId):
+                feed.append(self.tweets[i][0])
+                
+            if len(feed)==10:
+                break 
+        return feed
+
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower follows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId!=followeeId:
+            if followerId not in self.users:
+                self.users[followerId] = set()
+            self.users[followerId].add(followeeId)
+
+        
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower unfollows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId!=followeeId and  followerId in self.users and followeeId in self.users[followerId]:
+            self.users[followerId].remove(followeeId)
+        
+
+
+# Your Twitter object will be instantiated and called as such:
+# obj = Twitter()
+# obj.postTweet(userId,tweetId)
+# param_2 = obj.getNewsFeed(userId)
+# obj.follow(followerId,followeeId)
+# obj.unfollow(followerId,followeeId)
