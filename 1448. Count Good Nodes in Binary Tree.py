@@ -36,5 +36,35 @@ The number of nodes in the binary tree is in the range [1, 10^5].
 Each node's value is between [-10^4, 10^4].
 '''
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
+
+mx = 0
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        global mx
+        mx = 0
+        if root==None:
+            return 0
+        
+        maxVal = root.val
+        dfs(root, maxVal)
+        return mx
+
+
+def dfs(root, maxVal):
+    global mx
+    if root==None:
+        return
+    
+    if root.val>=maxVal:
+        mx+=1
+        
+    dfs(root.left, max(maxVal, root.val))
+    dfs(root.right, max(maxVal, root.val))
 
