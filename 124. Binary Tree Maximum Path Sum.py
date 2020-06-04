@@ -25,4 +25,30 @@ Input: [-10,9,20,null,null,15,7]
 Output: 42
 '''
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+maxSum = -2**31
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        global maxSum
+        maxSum = -2**31
+        DFS(root)
+        return maxSum
+        
+        
+def DFS(root):
+    global maxSum
+    if root==None:
+        return -2**31
+    
+    l = DFS(root.left)
+    r = DFS(root.right)
+    v = root.val
+    maxSum = max(v, v+l, v+r, l+r+v, maxSum)
+    return max(v,v+l,v+r)
 
