@@ -25,4 +25,28 @@ It is guaranteed that costs.length is even.
 1 <= costs[i][0], costs[i][1] <= 1000
 '''
 
-
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        a = 0
+        b = 0
+        cost = 0
+        costs.sort(key=lambda x : (abs(x[0]-x[1]),x[0]), reverse=True)
+        print(costs)
+        for i in range(len(costs)):
+            if costs[i][0]<=costs[i][1]:
+                if a<len(costs)//2:
+                    cost+=costs[i][0]
+                    a+=1
+                else:
+                    cost+=costs[i][1]
+                    b+=1
+            else:
+                if b<len(costs)//2:
+                    cost+=costs[i][1]
+                    b+=1
+                else:
+                    cost+=costs[i][0]
+                    a+=1
+                
+        return cost
+        
