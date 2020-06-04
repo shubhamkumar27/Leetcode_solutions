@@ -67,4 +67,3 @@ def dfs(root, maxVal):
         
     dfs(root.left, max(maxVal, root.val))
     dfs(root.right, max(maxVal, root.val))
-
