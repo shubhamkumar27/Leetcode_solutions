@@ -35,4 +35,27 @@ graph[i] will not contain i or duplicate values.
 The graph is undirected: if any element j is in graph[i], then i will be in graph[j].
 '''
 
-
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        visited = [0]*len(graph)
+        g1 = set()
+        g2 = set()
+        for i in range(len(graph)):
+            if visited[i]==0:
+                if not DFS(i, graph, visited, g1, g2):
+                    return False
+        return True
+        
+        
+def DFS(node, graph, visited, own, other):
+    visited[node]=1
+    own.add(node)
+    
+    for adj in graph[node]:
+        if adj in own:
+            return False
+        else:
+            if visited[adj]==0:
+                if not DFS(adj, graph, visited, other, own):
+                    return False
+    return True
