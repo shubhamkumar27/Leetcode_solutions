@@ -33,4 +33,29 @@ Output: 0
 Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
 '''
 
-
+from collections import deque
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList:
+            return 0
+        combinations = {}
+        for w in wordList:
+            for i in range(len(w)):
+                permu = w[:i]+'*'+w[i+1:]
+                combinations[permu] = combinations.get(permu,[])+[w]
+        
+        q = deque([[beginWord, 1]])
+        visited = set()
+        while(len(q)>0):
+            node = q.popleft()
+            word, level = node[0], node[1]
+            visited.add(word)
+            for i in range(len(word)):
+                p = word[:i]+'*'+word[i+1:]
+                if p in combinations:
+                    for nextWord in combinations[p]:
+                        if nextWord == endWord:
+                            return level+1
+                        elif nextWord not in visited:
+                            q.append([nextWord,level+1])
+        return 0
