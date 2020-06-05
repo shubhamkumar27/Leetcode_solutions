@@ -25,4 +25,11 @@ Input: "ZY"
 Output: 701
 '''
 
-
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        l = len(s)-1
+        ans = 0
+        for c in s:
+            ans += (26**l)*(ord(c)-64)
+            l-=1
+        return ans
