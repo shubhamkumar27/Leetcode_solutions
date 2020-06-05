@@ -11,6 +11,7 @@ Input:
 ]
 Output: 1->1->2->3->4->4->5->6
 '''
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -31,8 +32,6 @@ class Solution:
         for i in range(len(minHeap)):
             node = ListNode(heapq.heappop(minHeap))
             temp.next = node
-            temp = node
-            
-            
+            temp = node            
         return dummy.next
-            
+
