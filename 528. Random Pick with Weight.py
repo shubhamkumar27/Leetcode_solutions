@@ -23,4 +23,29 @@ Explanation of Input Syntax:
 The input is two lists: the subroutines called and their arguments. Solution's constructor has one argument, the array w. pickIndex has no arguments. Arguments are always wrapped with a list, even if there aren't any.
 '''
 
+class Solution:
 
+    def __init__(self, w: List[int]):
+        self.w = w
+        for i in range(1,len(w)):
+            self.w[i] += self.w[i-1]
+        
+
+    def pickIndex(self) -> int:
+        val = random.randint(1,self.w[-1])
+        l = 0
+        r = len(self.w)-1
+        while(l<r):       
+            mid = (l+r)//2
+            
+            if self.w[mid]<val:
+                l = mid+1
+            else:
+                r = mid
+                
+        return l
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
