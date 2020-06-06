@@ -45,8 +45,7 @@ class Solution:
                 if not DFS(i, graph, visited, g1, g2):
                     return False
         return True
-        
-        
+                
 def DFS(node, graph, visited, own, other):
     visited[node]=1
     own.add(node)
