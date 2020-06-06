@@ -35,4 +35,46 @@ Note:
 grid[i][j] is only 0, 1, or 2.
 '''
 
-
+from queue import Queue
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        row = len(grid)
+        col = len(grid[0])
+        
+        fresh = 0
+        q = Queue()
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j]==2:
+                    q.put([i,j])
+                elif grid[i][j]==1:
+                    fresh+=1
+        
+        direc = [-1,0,1,0,-1]
+        temp = Queue()
+        mins = 0
+        
+        while(1):
+            while(not q.empty()):
+                node = q.get()
+                i,j = node[0], node[1]
+                for k in range(4):
+                    x = i + direc[k]
+                    y = j + direc[k+1]
+                    
+                    if row>x>=0 and col>y>=0 and grid[x][y]==1:
+                        grid[x][y]=2
+                        temp.put([x,y])
+                        fresh-=1
+                        
+            if temp.qsize()==0:
+                break
+            else:
+                mins+=1
+                q = temp
+                temp = Queue()
+                
+        if fresh>0:
+            return -1
+        else:
+            return mins
