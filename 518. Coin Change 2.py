@@ -33,3 +33,17 @@ the number of coins is less than 500
 the answer is guaranteed to fit into signed 32-bit integer
 '''
 
+ans = 0
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        global ans
+        ans = 0
+        am = [0]*(amount+1)
+        am[0] = 1 
+        for coin in coins:
+            for j in range(coin,amount+1):
+                am[j] += am[j-coin]
+                
+        return am[amount]
+        
+        
