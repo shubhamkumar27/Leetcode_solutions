@@ -15,4 +15,16 @@ Follow up:
 Could you optimize your algorithm to use only O(k) extra space?
 '''
 
-
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        fact = [1]
+        for i in range(1,rowIndex+1):
+            fact.append(i*fact[-1])
+            
+        ans = []
+        for i in range(rowIndex+1):
+            val = fact[rowIndex]//(fact[rowIndex-i]*fact[i])
+            ans.append(val)
+            
+        return ans
+        
