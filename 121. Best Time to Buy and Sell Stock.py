@@ -18,4 +18,17 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 '''
 
-
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices)==0:
+            return 0
+        
+        pre = prices[0]
+        profit = 0
+        
+        for i in range(len(prices)):
+            pre = min(pre,prices[i])
+            profit = max(profit, prices[i]-pre)
+            
+        return profit
+        
