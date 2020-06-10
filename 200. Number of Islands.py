@@ -21,3 +21,34 @@ Input:
 Output: 3
 '''
 
+from collections import deque
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        islands = 0
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]=="1":
+                    q = deque([(i,j)])
+                    islands+=1
+                    DFS(q,grid)
+        return islands
+                    
+                    
+def DFS(q,grid):
+    r = len(grid)
+    c = len(grid[0])
+    
+    dircn = [-1,0,1,0,-1]
+    
+    while(len(q)):
+        i,j = q.pop()
+        grid[i][j]="0"
+        
+        for k in range(4):
+            x = i+dircn[k]
+            y = j+dircn[k+1]
+            
+            if r>x>=0 and c>y>=0 and grid[x][y]=="1":
+                q.append((x,y))
+        
