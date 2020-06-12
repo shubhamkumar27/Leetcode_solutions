@@ -29,3 +29,37 @@ You may assume that there are no duplicate edges in the input prerequisites.
 1 <= numCourses <= 10^5
 '''
 
+from queue import Queue
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = {}
+        indegree = {}
+        
+        for i in range(numCourses):
+            graph[i] = []
+            indegree[i] = 0
+
+        for ed in prerequisites:
+            graph[ed[1]].append(ed[0])
+            indegree[ed[0]]+=1
+        
+        q = Queue()
+        for k,v in indegree.items():
+            if v==0:
+                q.put(k)
+        
+        res = []
+        while(q.qsize()):
+            node = q.get()
+            res.append(node)
+            
+            for nn in graph[node]:
+                indegree[nn]-=1
+                if indegree[nn]==0:
+                    q.put(nn)
+                    
+        if len(res)==numCourses:
+            return True
+        else:
+            return False
+            
