@@ -25,3 +25,38 @@ Note:
 The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
 You may assume that there are no duplicate edges in the input prerequisites.
 '''
+
+from queue import Queue
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        graph = {}
+        indegree = {}
+        
+        for i in range(numCourses):
+            graph[i] = []
+            indegree[i] = 0
+
+        for ed in prerequisites:
+            graph[ed[1]].append(ed[0])
+            indegree[ed[0]]+=1
+        
+        q = Queue()
+        for k,v in indegree.items():
+            if v==0:
+                q.put(k)
+        
+        res = []
+        while(q.qsize()):
+            node = q.get()
+            res.append(node)
+            
+            for nn in graph[node]:
+                indegree[nn]-=1
+                if indegree[nn]==0:
+                    q.put(nn)
+        
+        if len(res)==numCourses:
+            return res
+        else:
+            return []
+            
