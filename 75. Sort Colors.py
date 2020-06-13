@@ -35,3 +35,4 @@ class Solution:
                 b-=1
             else:
                 w+=1
+
