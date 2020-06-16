@@ -30,3 +30,14 @@ Constraints:
 1 <= prices.length <= 3 * 10 ^ 4
 0 <= prices[i] <= 10 ^ 4
 '''
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        prev = 2**31-1
+        total = 0
+        for i in range(len(prices)):
+            if prices[i]>prev:
+                total+=(prices[i]-prev)
+            prev = prices[i]
+
+        return total
