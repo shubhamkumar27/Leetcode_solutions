@@ -43,3 +43,19 @@ You cannot travel back to station 2, as it requires 4 unit of gas but you only h
 Therefore, you can't travel around the circuit once no matter where you start.
 '''
 
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        cur = 0
+        total = 0
+        start = 0
+        for i in range(len(gas)):
+            cur += gas[i]-cost[i]
+            if cur<0:
+                total += cur
+                cur = 0
+                start = i+1
+                
+        if total+cur<0:
+            return -1
+        else:
+            return start
