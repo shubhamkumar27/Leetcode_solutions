@@ -37,3 +37,24 @@ You may assume there are no cycles anywhere in the entire linked structure.
 Your code should preferably run in O(n) time and use only O(1) memory.
 '''
 
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        tempa = headA
+        tempb = headB
+        
+        if tempa==None or tempb==None:
+            return None
+        
+        while tempa!=tempb:
+            tempa = tempa.next
+            tempb = tempb.next
+            
+            if tempa==None and tempb==None:
+                return None
+            
+            if tempa==None:
+                tempa = headB
+            elif tempb==None:
+                tempb = headA
+                
+        return tempa
