@@ -20,3 +20,33 @@ The first node is considered odd, the second node even and so on ...
 The length of the linked list is between [0, 10^4].
 '''
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        if head==None or head.next==None or head.next.next==None:
+            return head
+        
+        oddHead = tempOdd = head
+        evenPart = head.next
+        evenHead = tempEven = head.next
+        
+        while(tempOdd.next or tempEven.next):
+            tempOdd = tempOdd.next.next
+            tempEven = tempEven.next.next
+            
+            oddHead.next = tempOdd
+            evenHead.next = tempEven
+            
+            oddHead = tempOdd
+            evenHead = tempEven
+            
+            if tempOdd==None or tempEven==None or tempEven.next==None:
+                break
+            
+        oddHead.next = evenPart
+        
+        return head  
