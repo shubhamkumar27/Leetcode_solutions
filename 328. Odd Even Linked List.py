@@ -48,5 +48,4 @@ class Solution:
                 break
             
         oddHead.next = evenPart
-        
         return head  
