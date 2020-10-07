@@ -47,5 +47,5 @@ class Solution:
             if tempOdd==None or tempEven==None or tempEven.next==None:
                 break
             
-        oddHead.next = evenPart
+        oddHead.next = evenPart1
         return head  
